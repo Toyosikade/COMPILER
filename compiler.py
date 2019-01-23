@@ -311,11 +311,12 @@ def statement(tx):
          statement(tx)
     elif sym == "WRITE" :
         getsym()
-        if sym == "(" :
-            getsym()
-            expression(tx)
-            get sym()
-            else sym == ";" :   #(not sure about this line)
+        if sym != "(" :
+            error()
+        getsym()
+        expression(tx)
+        getsym()
+        while sym != "" :   #(not sure about this line)
         if sym == ")" :
             expression(tx)
 
