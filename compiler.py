@@ -273,16 +273,13 @@ def statement(tx):
         if sym != "THEN":
             error(16)
         getsym()
-        statement(tx)
-#################################################
-    elif sym == "THEN":
-        getsym()
+ #################################################
         statement(tx)
         getsym()
-    elif sym == "ELSE":
-        getsym()
-        statement(tx)
-        getsym()
+        if sym == "ELSE":
+            getsym()
+            statement(tx)
+            getsym()
     elif sym == "REPEAT":
         getsym()
         statement(sym)
@@ -292,25 +289,28 @@ def statement(tx):
         getsym()
         statement(sym)
         getsym()
-    elif sym == "UNTIL" :
+        if sym != "UNTIL" :
+            error(20)
         getsym()
         condition(sym)
     elif sym == "FOR":
         getsym()
-        if sym == "ident" :
-            getsym()
-            if sym == ":=" :
-                getsym()
-                expression(tx)
-                getsym()
-            if sym == "TO" or "DOWNTO" :
-                expression(tx)
-                getsym()
-                if sym!= "DO":
-                    error(19)
-                statement(tx)
+        ident(sym) :
+        getsym()
+        if sym != ":=" :
+            error(13)
+        getsym()
+        expression(tx)
+        getsym()
+        if sym != "TO" or "DOWNTO" :
+            error(20)
+         expression(tx)
+         getsym()
+         if sym!= "DO":
+             error(19)
+         statement(tx)
     elif sym == "WRITE" :
-        getsmy()
+        getsym()
         if sym == "(" :
             getsym()
             expression(tx)
