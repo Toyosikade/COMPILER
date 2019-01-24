@@ -316,21 +316,28 @@ def statement(tx):
         getsym()
         expression(tx)
         getsym()
-        while sym != "" :   #(not sure about this line)
-        if sym == ")" :
-            expression(tx)
+        if sym !="("
+            error(1)
+        getsym()
+        expression(tx)
+        getsym()  
+        if sym != ")" :
+            error(22)
+        expression(tx)
 
     elif sym == "CASE" :
         getsym()
         expression(tx)
-        if sym == "OF" :
-            getsym()
-        if sym == "Number" or "Constant" :
-            get sym()
-        if sym == "Statement"
-            getsym()
-        if sym = "CEND"
-            getsym()
+        if sym != "OF" :
+            error(1)
+        getsym()   
+        if sym.isdigit == false :
+            error(2)
+        getsym()
+        Statement(tx)          
+        getsym()
+        if sym != "CEND"
+        `   error(1)
             
             
                 
