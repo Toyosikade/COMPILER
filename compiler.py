@@ -275,7 +275,6 @@ def statement(tx):
         getsym()
  #################################################
         statement(tx)
-        getsym()
         if sym == "ELSE":
             getsym()
             statement(tx)
@@ -295,20 +294,25 @@ def statement(tx):
         condition(sym)
     elif sym == "FOR":
         getsym()
-        ident(sym) :
-        getsym()
-        if sym != ":=" :
+        if sym != "ident":
+           error(4)
+        i = position(tx, id)
+        if id == 0:
+            error(11)
+        
+        #getsym()
+        if sym != "becomes":
             error(13)
         getsym()
         expression(tx)
         getsym()
         if sym != "TO" or "DOWNTO" :
             error(20)
-         expression(tx)
-         getsym()
-         if sym!= "DO":
-             error(19)
-         statement(tx)
+        expression(tx)
+        getsym()
+        if sym!= "DO":
+            error(19)
+        statement(tx)
     elif sym == "WRITE" :
         getsym()
         if sym != "(" :
@@ -316,7 +320,7 @@ def statement(tx):
         getsym()
         expression(tx)
         getsym()
-        if sym !="("
+        if sym !="(" :
             error(1)
         getsym()
         expression(tx)
@@ -336,8 +340,8 @@ def statement(tx):
         getsym()
         Statement(tx)          
         getsym()
-        if sym != "CEND"
-        `   error(1)
+        if sym != "CEND":
+            error(1)
             
             
                 
