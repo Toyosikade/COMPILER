@@ -1,6 +1,6 @@
 import sys
 
-norw = 11      #number of reserved words
+norw = 14      #number of reserved words
 txmax = 100   #length of identifier table
 nmax = 14      #max number of digits in number
 al = 10          #length of identifiers
@@ -153,6 +153,7 @@ def getsym():
     else:
         sym = ssym[ch]
         getch()
+    print(sym)
         
 #--------------POSITION FUNCTION----------------------------
 def position(tx, k):
@@ -273,79 +274,31 @@ def statement(tx):
         if sym != "THEN":
             error(16)
         getsym()
- #################################################
         statement(tx)
-        getsym()
-        if sym == "ELSE":
-            getsym()
-            statement(tx)
-            getsym()
-    elif sym == "REPEAT":
-        getsym()
-        statement(sym)
-        getsym()
-        if sym!= ";":
-            error(17)
-        getsym()
-        statement(sym)
-        getsym()
-        if sym != "UNTIL" :
-            error(20)
-        getsym()
-        condition(sym)
+
+##################################################################################################################################################        
     elif sym == "FOR":
         getsym()
-        ident(sym) :
+        if sym != "ident":
+           error(4)
         getsym()
-        if sym != ":=" :
+        if sym != "becomes":
             error(13)
         getsym()
         expression(tx)
-        getsym()
-        if sym != "TO" or "DOWNTO" :
-            error(20)
-         expression(tx)
-         getsym()
-         if sym!= "DO":
-             error(19)
-         statement(tx)
-    elif sym == "WRITE" :
-        getsym()
-        if sym != "(" :
-            error()
-        getsym()
+        print(sym)
+        if sym != "TO" and sym != "DOWNTO"  :
+                print(19)
+                error(19)
+        getsym()    
         expression(tx)
         getsym()
-        if sym !="("
-            error(1)
-        getsym()
-        expression(tx)
-        getsym()  
-        if sym != ")" :
-            error(22)
-        expression(tx)
-
-    elif sym == "CASE" :
-        getsym()
-        expression(tx)
-        if sym != "OF" :
-            error(1)
-        getsym()   
-        if sym.isdigit == false :
-            error(2)
-        getsym()
-        Statement(tx)          
-        getsym()
-        if sym != "CEND"
-        `   error(1)
-            
-            
-                
-                
-#################################################
-        
-        
-    
+        if sym!= "DO":
+            print("q") 
+            error(19)
+        getsym()    
+        statement(tx)
+#####################################################################################################################################################        
     elif sym == "BEGIN":
         while True:
             getsym()
@@ -422,21 +375,29 @@ def condition(tx):
         else:
             getsym()
             expression(tx)
-
-        
+    
 #-------------------MAIN PROGRAM------------------------------------------------------------#
 
 rword.append('BEGIN')
 rword.append('CALL')
+
+###################################################################################################################################
+
+rword.append('FOR')
+rword.append('TO')
+rword.append('DOWNTO')
+####################################################################################################################################
 rword.append('CONST')
 rword.append('DO')
 rword.append('END')
 rword.append('IF')
 rword.append('ODD')
+
 rword.append('PROCEDURE')
 rword.append('THEN')
 rword.append('VAR')
 rword.append('WHILE')
+
 
 ssym = {'+' : "plus",
              '-' : "minus",
