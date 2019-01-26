@@ -287,7 +287,7 @@ def statement(tx):
         getsym()
         expression(tx)
         print(sym)
-        if sym != "TO" and sym != "DOWNTO"  :
+        if sym != "TO" and sym != "DOWNTO"  :    #why is it to and downto and not to or downto? and why is the To and down to in the elseif?
                 print(19)
                 error(19)
         getsym()    
